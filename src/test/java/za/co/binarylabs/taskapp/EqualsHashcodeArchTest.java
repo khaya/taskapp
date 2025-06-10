@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 @UnitTest
 class EqualsHashcodeArchTest {
 
-  private static final String ROOT_PACKAGE = "za.co.binarylabs.todoapp..";
+  private static final String ROOT_PACKAGE = "za.co.binarylabs.taskapp..";
 
   private static final JavaClasses classes = new ClassFileImporter()
     .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 @UnitTest
 class AnnotationArchTest {
 
-  private static final String ROOT_PACKAGE = "za.co.binarylabs.todoapp";
+  private static final String ROOT_PACKAGE = "za.co.binarylabs.taskapp";
   private static final String ROOT_PACKAGE_PROJECT = ROOT_PACKAGE + "..";
 
   // @formatter:off

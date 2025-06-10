@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @UnitTest
 class BeanValidationTest {
 
-  private static final String ROOT_PACKAGE = "za.co.binarylabs.todoapp";
+  private static final String ROOT_PACKAGE = "za.co.binarylabs.taskapp";
   private static final Set<String> EXCLUDED_CONTROLLERS = Set.of(
     "ExceptionTranslatorTestController",
     "AuthenticationResource",
