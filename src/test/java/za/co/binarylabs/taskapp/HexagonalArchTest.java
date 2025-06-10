@@ -22,7 +22,7 @@ import org.springframework.stereotype.Controller;
 @UnitTest
 class HexagonalArchTest {
 
-  private static final String ROOT_PACKAGE = "za.co.binarylabs.todoapp";
+  private static final String ROOT_PACKAGE = "za.co.binarylabs.taskapp";
   private static final String SHARED_PACKAGES = ROOT_PACKAGE.concat(".shared..");
   private static final String WIRE_PACKAGES = ROOT_PACKAGE.concat(".wire..");
 
