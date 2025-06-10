@@ -125,5 +125,17 @@
       "serverPort" : 8080,
       "springConfigurationFormat" : "yaml"
     }
+  }, {
+    "module" : "jpa-postgresql",
+    "date" : "2025-06-10T09:10:56.158496810Z",
+    "properties" : {
+      "packageName" : "za.co.binarylabs.todoapp",
+      "projectName" : "todo",
+      "baseName" : "todo",
+      "endOfLine" : "lf",
+      "indentSize" : 2,
+      "serverPort" : 8080,
+      "springConfigurationFormat" : "yaml"
+    }
   } ]
 }
