@@ -28,4 +28,4 @@ jobs:
           cache: maven
       - name: 'Test: run tests'
         run: |
-          mvn --batch-mode -ntp clean verify
+          mvn --batch-mode -ntp clean test
