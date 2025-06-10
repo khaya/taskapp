@@ -18,7 +18,7 @@ public final class LogsSpy {
 
   void prepare() {
     appender = new ListAppender<>();
-    logger = (Logger) LoggerFactory.getLogger("za.co.binarylabs.todoapp");
+    logger = (Logger) LoggerFactory.getLogger("za.co.binarylabs.taskapp");
     logger.addAppender(appender);
     initialLevel = logger.getLevel();
     logger.setLevel(Level.TRACE);
