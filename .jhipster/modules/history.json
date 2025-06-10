@@ -149,5 +149,17 @@
       "serverPort" : 8080,
       "springConfigurationFormat" : "yaml"
     }
+  }, {
+    "module" : "springdoc-mvc-openapi",
+    "date" : "2025-06-10T09:13:29.147282840Z",
+    "properties" : {
+      "packageName" : "za.co.binarylabs.todoapp",
+      "projectName" : "todo",
+      "baseName" : "todo",
+      "endOfLine" : "lf",
+      "indentSize" : 2,
+      "serverPort" : 8080,
+      "springConfigurationFormat" : "yaml"
+    }
   } ]
 }
