@@ -19,5 +19,15 @@
       "endOfLine" : "lf",
       "indentSize" : 2
     }
+  }, {
+    "module" : "java-base",
+    "date" : "2025-06-10T09:09:10.905259311Z",
+    "properties" : {
+      "packageName" : "za.co.binarylabs.todoapp",
+      "projectName" : "todo",
+      "baseName" : "todo",
+      "endOfLine" : "lf",
+      "indentSize" : 2
+    }
   } ]
 }
