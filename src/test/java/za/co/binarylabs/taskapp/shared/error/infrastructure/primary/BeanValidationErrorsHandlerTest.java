@@ -25,7 +25,7 @@ class BeanValidationErrorsHandlerTest {
   @Logs
   private LogsSpy logs;
 
-  //@Test
+  @Test
   void shouldLogMethodArgumentNotValidInInfo() throws NoSuchMethodException, SecurityException {
     handler.handleMethodArgumentNotValid(
       new MethodArgumentNotValidException(
@@ -41,7 +41,7 @@ class BeanValidationErrorsHandlerTest {
     // empty method
   }
 
-  //@Test
+  @Test
   void shouldLogConstraintViolationInInfo() throws SecurityException {
     handler.handleConstraintViolationException(
       new ConstraintViolationException(Validation.buildDefaultValidatorFactory().getValidator().validate(new ValidatedBean()))
