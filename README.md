@@ -43,5 +43,6 @@ docker compose -f src/main/docker/postgresql.yml up -d
 - [sonar](documentation/sonar.md)
 - [PostgreSQL](documentation/postgresql.md)
 - [Logs Spy](documentation/logs-spy.md)
+- [Dev tools](documentation/dev-tools.md)
 
 <!-- jhipster-needle-documentation -->

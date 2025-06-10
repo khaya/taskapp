@@ -4,3 +4,9 @@ logging:
       co:
         binarylabs:
           todoapp: DEBUG
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
