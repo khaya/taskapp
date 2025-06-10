@@ -10,3 +10,5 @@ spring:
     password: ''
     url: jdbc:tc:postgresql:17.5:///todo?TC_TMPFS=/testtmpfs:rw
     username: todo
+server:
+  port: 0
