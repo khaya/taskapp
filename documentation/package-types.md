@@ -8,15 +8,15 @@ This application comes with two package level annotations:
 To mark a package, you have to add a `package-info.java` file at the package root with:
 
 ```java
-@za.co.binarylabs.todoapp.SharedKernel
-package za.co.binarylabs.todoapp;
+@za.co.binarylabs.taskapp.SharedKernel
+package za.co.binarylabs.taskapp;
 
 ```
 
 or:
 
 ```java
-@za.co.binarylabs.todoapp.BusinessContext
-package za.co.binarylabs.todoapp;
+@za.co.binarylabs.taskapp.BusinessContext
+package za.co.binarylabs.taskapp;
 
 ```
