@@ -1,4 +1,4 @@
-package za.co.binarylabs.taskapp.todo.domain;
+package za.co.binarylabs.taskapp.task.domain;
 
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
 

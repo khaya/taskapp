@@ -1,8 +1,8 @@
-package za.co.binarylabs.taskapp.todo.infrastructure.primary;
+package za.co.binarylabs.taskapp.task.infrastructure.primary;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
-import za.co.binarylabs.taskapp.todo.domain.Tasks;
+import za.co.binarylabs.taskapp.task.domain.Tasks;
 
 import java.util.Collection;
 
@@ -12,6 +12,7 @@ final class RestTasks {
   private final Collection<RestTask> tasks;
 
   private RestTasks(Collection<RestTask> tasks) {
+    Assert.notNull("tasks", tasks);
     this.tasks = tasks;
   }
 

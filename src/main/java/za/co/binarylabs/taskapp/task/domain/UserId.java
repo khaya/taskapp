@@ -1,4 +1,4 @@
-package za.co.binarylabs.taskapp.todo.domain;
+package za.co.binarylabs.taskapp.task.domain;
 
 
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
@@ -15,12 +15,16 @@ public record UserId(UUID id) {
       return new UserId(UUID.randomUUID());
     }
 
+    public static UserId fromString(String id) {
+        Assert.notNull("id", id);
+        return new UserId(UUID.fromString(id));
+    }
     public UUID get() {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "UserId{" + "id=" + id + '}';
-    }
+     public String value() {
+            return id.toString();
+        }
+
 }

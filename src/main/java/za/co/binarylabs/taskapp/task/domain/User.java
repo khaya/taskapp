@@ -1,4 +1,4 @@
-package za.co.binarylabs.taskapp.todo.domain;
+package za.co.binarylabs.taskapp.task.domain;
 
 public class User {
 

@@ -3,7 +3,7 @@ logging:
     za:
       co:
         binarylabs:
-          todoapp: DEBUG
+          taskapp: DEBUG
 spring:
   devtools:
     livereload:

@@ -1,8 +1,8 @@
-package za.co.binarylabs.taskapp.todo.infrastructure.primary;
+package za.co.binarylabs.taskapp.task.infrastructure.primary;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
-import za.co.binarylabs.taskapp.todo.domain.Task;
+import za.co.binarylabs.taskapp.task.domain.Task;
 
 import java.time.LocalDateTime;
 
@@ -58,7 +58,7 @@ final class RestTask {
   public static RestTask from(Task task){
     Assert.notNull("task", task);
     return new RestTaskBuilder()
-      .id(task.id().get())
+      .id(task.id().value())
       .title(task.title().get())
       .description(task.description().get())
       .dueDate(task.dueDate())

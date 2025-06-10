@@ -6,5 +6,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = { "za.co.binarylabs.todoapp" }, enableDefaultTransactions = false)
+@EnableJpaRepositories(basePackages = { "za.co.binarylabs.taskapp" }, enableDefaultTransactions = false)
 class DatabaseConfiguration {}

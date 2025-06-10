@@ -1,19 +1,25 @@
-package za.co.binarylabs.taskapp.todo.infrastructure.primary;
+package za.co.binarylabs.taskapp.task.infrastructure.primary;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import za.co.binarylabs.taskapp.todo.domain.TaskToCreate;
+import za.co.binarylabs.taskapp.shared.error.domain.Assert;
+import za.co.binarylabs.taskapp.task.domain.TaskToCreate;
 
 import java.time.LocalDateTime;
 
 @Schema(name = "taskToCreate", description = "A task to create")
-public class RestTaskToCreate {
+class RestTaskToCreate {
 
   private final String title;
   private final String description;
   private final LocalDateTime dueDate;
   private final String priority;
 
-  RestTaskToCreate(String title,String description, LocalDateTime dueDate, String priority) {
+  RestTaskToCreate(@JsonProperty("title") String title,@JsonProperty("description") String description,@JsonProperty("dueDate") LocalDateTime dueDate,@JsonProperty("priority") String priority) {
+    Assert.notNull("title", title);
+    Assert.notNull("description", description);
+    Assert.notNull("dueDate", dueDate);
+    Assert.notNull("priority", priority);
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;

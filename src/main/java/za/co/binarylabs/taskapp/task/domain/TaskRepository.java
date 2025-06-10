@@ -1,4 +1,4 @@
-package za.co.binarylabs.taskapp.todo.domain;
+package za.co.binarylabs.taskapp.task.domain;
 
 import java.util.Optional;
 

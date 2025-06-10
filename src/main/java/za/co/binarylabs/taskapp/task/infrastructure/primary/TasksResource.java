@@ -1,51 +1,31 @@
-package za.co.binarylabs.taskapp.todo.infrastructure.primary;
+package za.co.binarylabs.taskapp.task.infrastructure.primary;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import za.co.binarylabs.taskapp.todo.application.*;
-import za.co.binarylabs.taskapp.todo.domain.*;
+import za.co.binarylabs.taskapp.task.application.*;
 
-import java.util.UUID;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import za.co.binarylabs.taskapp.task.domain.TaskRepository;
 
 
-@RestController
+//@RestController
 @Tag(name = "Tasks")
 @RequestMapping("/api/tasks")
 class TasksResource {
 
-  private final CreateTaskUseCase createTaskUseCase;
-  private final CompleteTaskUseCase completeTaskUseCase;
-  private final DeleteTaskUseCase deleteTaskUseCase;
-  private final FindTasksUseCase findTasksUseCase;
-  private final FindTaskUseCase findTaskUseCase;
+  private final TaskApplicationService applicationService;
   private final TaskRepository taskRepository;
 
-  public TasksResource(CreateTaskUseCase createTaskUseCase, CompleteTaskUseCase completeTaskUseCase, DeleteTaskUseCase deleteTaskUseCase, FindTasksUseCase findTasksUseCase, FindTaskUseCase findTaskUseCase, TaskRepository taskRepository) {
-    this.createTaskUseCase = createTaskUseCase;
-    this.completeTaskUseCase = completeTaskUseCase;
-    this.deleteTaskUseCase = deleteTaskUseCase;
-    this.findTasksUseCase = findTasksUseCase;
-    this.findTaskUseCase = findTaskUseCase;
+  public TasksResource(TaskApplicationService applicationService, TaskRepository taskRepository) {
+    this.applicationService = applicationService;
     this.taskRepository = taskRepository;
   }
 
+/*
   @PostMapping
   @Operation(summary = "Add a Task to the catalog")
   @ApiResponse(description = "Task added to the catalog", responseCode = "201")
   ResponseEntity<RestTask> addTask(@Validated @RequestBody RestTaskToCreate taskToCreate) {
-    var createdTask = createTaskUseCase.execute(taskToCreate.toDomain());
-
+    Task createdTask = createTaskUseCase.execute(taskToCreate.toDomain());
     return new ResponseEntity<>(RestTask.from(createdTask), HttpStatus.CREATED);
   }
 
@@ -78,5 +58,5 @@ class TasksResource {
   @ApiResponse(description = "Task removed from the catalog", responseCode = "200")
   void removeTask(@PathVariable("task-id") UUID id) {
     deleteTaskUseCase.execute(new TaskId(id));
-  }
+  }*/
 }

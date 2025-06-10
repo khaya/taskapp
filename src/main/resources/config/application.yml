@@ -3,10 +3,10 @@ logging:
     za:
       co:
         binarylabs:
-          todoapp: INFO
+          taskapp: INFO
 spring:
   application:
-    name: Todo
+    name: TaskApp
   datasource:
     driver-class-name: org.postgresql.Driver
     hikari:
@@ -14,8 +14,8 @@ spring:
       poolName: Hikari
     password: ''
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/todo
-    username: todo
+    url: jdbc:postgresql://localhost:5432/taskapp
+    username: taskapp
   devtools:
     livereload:
       enabled: false
