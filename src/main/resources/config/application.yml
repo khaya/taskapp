@@ -1,0 +1,9 @@
+logging:
+  level:
+    za:
+      co:
+        binarylabs:
+          todoapp: INFO
+spring:
+  application:
+    name: Todo

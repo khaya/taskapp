@@ -1,0 +1,6 @@
+logging:
+  level:
+    za:
+      co:
+        binarylabs:
+          todoapp: DEBUG
