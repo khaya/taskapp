@@ -21,12 +21,14 @@ public class JpaTaskRepository implements TaskRepository {
 
   @Override
   public Optional<Task> findById(TaskId taskId) {
+    Assert.notNull("taskId", taskId);
     return repository.findById(taskId.value())
         .map(taskMapper::toDomain);
   }
 
   @Override
   public void save(Task task) {
+    Assert.notNull("task", task);
     repository.save(taskMapper.toJpaEntity(task));
   }
 
