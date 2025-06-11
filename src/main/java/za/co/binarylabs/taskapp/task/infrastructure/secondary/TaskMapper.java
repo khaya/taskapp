@@ -1,19 +1,17 @@
 package za.co.binarylabs.taskapp.task.infrastructure.secondary;
 
+import org.springframework.stereotype.Component;
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
-import za.co.binarylabs.taskapp.task.domain.Task;
-import za.co.binarylabs.taskapp.task.domain.TaskDescription;
-import za.co.binarylabs.taskapp.task.domain.TaskId;
-import za.co.binarylabs.taskapp.task.domain.TaskTitle;
+import za.co.binarylabs.taskapp.task.domain.*;
 
-//@Component
+@Component
 public class TaskMapper {
 
   public Task toDomain(JpaTask entity) {
     Assert.notNull("entity", entity);
     return Task.builder()
         .id(TaskId.fromString(entity.getId()))
-        //.userId(entity.getUserId())
+        .userId(UserId.fromString(entity.getUserId()))
         .title(new TaskTitle(entity.getTitle()))
         .description(new TaskDescription(entity.getDescription()))
         .priority(entity.getPriority())
@@ -25,7 +23,7 @@ public class TaskMapper {
     Assert.notNull("task", task);
     JpaTask entity = new JpaTask();
     entity.setId(task.id().value());
-    // entity.setUserId(task.getUserId().value()); // Uncomment if userId exists
+    entity.setUserId(task.userId().value()); // Uncomment if userId exists
     entity.setTitle(task.title().get());
     entity.setDescription(task.description().get());
     entity.setPriority(task.priority().name());

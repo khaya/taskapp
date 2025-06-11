@@ -9,6 +9,7 @@ public class Task {
   LocalDateTime dueDate;
   Priority priority;
   Status status;
+  UserId userId;
 
   public TaskId id() {
     return id;
@@ -27,6 +28,9 @@ public class Task {
   }
   public Status status() {
     return status;
+  }
+  public UserId userId() {
+    return userId;
   }
 
   public boolean isOpen() {
@@ -84,6 +88,7 @@ public class Task {
     this.dueDate = builder.dueDate;
     this.priority = builder.priority;
     this.status = builder.status;
+    this.userId = builder.userId;
   }
 
   public static TaskBuilder builder() {
@@ -97,6 +102,7 @@ public class Task {
     private LocalDateTime dueDate;
     private Priority priority;
     private Status status;
+    private UserId userId;
 
     public TaskBuilder(){
     }
@@ -128,6 +134,10 @@ public class Task {
 
     public TaskBuilder status(String status) {
       this.status = Status.valueOf(status);
+      return this;
+    }
+    public TaskBuilder userId(UserId userId) {
+      this.userId = userId;
       return this;
     }
 
