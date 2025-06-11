@@ -1,15 +1,16 @@
 package za.co.binarylabs.taskapp.task.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalDate;
 
 public class Task {
   TaskId id;
   TaskTitle title;
   TaskDescription description;
-  LocalDateTime dueDate;
+  LocalDate dueDate;
   Priority priority;
   Status status;
-  UserId userId;
+  User user;
 
   public TaskId id() {
     return id;
@@ -20,7 +21,7 @@ public class Task {
   public TaskDescription description() {
     return description;
   }
-  public LocalDateTime dueDate() {
+  public LocalDate dueDate() {
     return dueDate;
   }
   public Priority priority() {
@@ -29,8 +30,8 @@ public class Task {
   public Status status() {
     return status;
   }
-  public UserId userId() {
-    return userId;
+  public User user() {
+    return user;
   }
 
   public boolean isOpen() {
@@ -38,7 +39,7 @@ public class Task {
   }
 
   public boolean isOverdue() {
-    return this.dueDate.isBefore(LocalDateTime.now());
+    return this.dueDate.isBefore(LocalDate.now());
   }
 
   public void markAsCompleted() {
@@ -88,7 +89,7 @@ public class Task {
     this.dueDate = builder.dueDate;
     this.priority = builder.priority;
     this.status = builder.status;
-    this.userId = builder.userId;
+    this.user = builder.user;
   }
 
   public static TaskBuilder builder() {
@@ -99,10 +100,10 @@ public class Task {
     private TaskId id;
     private TaskTitle title;
     private TaskDescription description;
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
     private Priority priority;
     private Status status;
-    private UserId userId;
+    private User user;
 
     public TaskBuilder(){
     }
@@ -122,7 +123,7 @@ public class Task {
       return this;
     }
 
-    public TaskBuilder dueDate(LocalDateTime dueDate) {
+    public TaskBuilder dueDate(LocalDate dueDate) {
       this.dueDate = dueDate;
       return this;
     }
@@ -136,8 +137,8 @@ public class Task {
       this.status = Status.valueOf(status);
       return this;
     }
-    public TaskBuilder userId(UserId userId) {
-      this.userId = userId;
+    public TaskBuilder user(User user) {
+      this.user = user;
       return this;
     }
 

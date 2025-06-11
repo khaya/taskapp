@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import za.co.binarylabs.taskapp.UnitTest;
 import za.co.binarylabs.taskapp.shared.error.domain.MissingMandatoryValueException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -18,7 +18,7 @@ class RestTaskToCreateTest {
   void buildsRestTaskToCreateWithAllFieldsSet() {
     String title = "Task title";
     String description = "Task description";
-    LocalDateTime dueDate = LocalDateTime.now();
+    LocalDate dueDate = LocalDate.now();
     String priority = "HIGH";
 
     RestTaskToCreate restTaskToCreate = new RestTaskToCreate(title, description, dueDate, priority);

@@ -9,7 +9,7 @@ import za.co.binarylabs.taskapp.task.domain.TaskDescription;
 import za.co.binarylabs.taskapp.task.domain.TaskId;
 import za.co.binarylabs.taskapp.task.domain.TaskTitle;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -25,7 +25,7 @@ class RestTaskTest {
     TaskId id = new TaskId(java.util.UUID.randomUUID());
     TaskTitle title = new TaskTitle("Title");
     TaskDescription description = new TaskDescription("Description");
-    LocalDateTime dueDate = LocalDateTime.now();
+    LocalDate dueDate = LocalDate.now();
     Task.Priority priority = Task.Priority.HIGH;
     Task.Status status = Task.Status.COMPLETED;
 
@@ -61,7 +61,7 @@ class RestTaskTest {
     String id = "id";
     String title = "title";
     String description = "desc";
-    LocalDateTime dueDate = LocalDateTime.now();
+    LocalDate dueDate = LocalDate.now();
     String priority = "LOW";
     String status = "PENDING";
 

@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
 import za.co.binarylabs.taskapp.task.domain.Task;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Schema(name="task", description = "A task")
 final class RestTask {
@@ -12,7 +12,7 @@ final class RestTask {
   private final String id;
   private final String title;
   private final String description;
-  private final LocalDateTime dueDate;
+  private final LocalDate dueDate;
   private final String priority;
   private final String status;
 
@@ -41,7 +41,7 @@ final class RestTask {
   }
 
   @Schema(description = "Due date of this task", requiredMode = Schema.RequiredMode.REQUIRED)
-  public LocalDateTime getDueDate() {
+  public LocalDate getDueDate() {
     return dueDate;
   }
 
@@ -72,7 +72,7 @@ final class RestTask {
     private String id;
     private String title;
     private String description;
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
     private String priority;
     private String status;
 
@@ -91,7 +91,7 @@ final class RestTask {
       return this;
     }
 
-    public RestTaskBuilder dueDate(LocalDateTime dueDate) {
+    public RestTaskBuilder dueDate(LocalDate dueDate) {
       this.dueDate = dueDate;
       return this;
     }

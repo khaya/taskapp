@@ -2,9 +2,9 @@ package za.co.binarylabs.taskapp.task.domain;
 
 import za.co.binarylabs.taskapp.shared.error.domain.Assert;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public record TaskToCreate(String title, String description, LocalDateTime dueDate, String priority) {
+public record TaskToCreate(String title, String description, LocalDate dueDate, String priority) {
 
   public TaskToCreate {
     Assert.notNull("title", title);

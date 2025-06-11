@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import za.co.binarylabs.taskapp.UnitTest;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
@@ -19,10 +19,11 @@ class TaskTest {
     TaskId id = new TaskId(UUID.randomUUID());
     TaskTitle title = new TaskTitle("Title");
     TaskDescription description = new TaskDescription("Description");
-    LocalDateTime dueDate = LocalDateTime.now().plusDays(1);
+    LocalDate dueDate = LocalDate.now().plusDays(1);
     Task.Priority priority = Task.Priority.HIGH;
     Task.Status status = Task.Status.OPEN;
     UserId userId = new UserId(UUID.randomUUID());
+    User user = new User(userId, "username");
 
     Task task = Task.builder()
       .id(id)
@@ -31,7 +32,7 @@ class TaskTest {
       .dueDate(dueDate)
       .priority(priority.name())
       .status(status.name())
-      .userId(userId)
+      .user(user)
       .build();
 
     assertThat(task.id()).isEqualTo(id);
@@ -40,7 +41,7 @@ class TaskTest {
     assertThat(task.dueDate()).isEqualTo(dueDate);
     assertThat(task.priority()).isEqualTo(priority);
     assertThat(task.status()).isEqualTo(status);
-    assertThat(task.userId()).isEqualTo(userId);
+    assertThat(task.user().userId()).isEqualTo(userId);
   }
 
   @Test
@@ -65,7 +66,7 @@ class TaskTest {
   @DisplayName("isOverdue returns true when dueDate is before now")
   void isOverdueReturnsTrueWhenDueDateIsBeforeNow() {
     Task task = Task.builder()
-      .dueDate(LocalDateTime.now().minusDays(1))
+      .dueDate(LocalDate.now().minusDays(1))
       .build();
     assertThat(task.isOverdue()).isTrue();
   }
@@ -74,7 +75,7 @@ class TaskTest {
   @DisplayName("isOverdue returns false when dueDate is after now")
   void isOverdueReturnsFalseWhenDueDateIsAfterNow() {
     Task task = Task.builder()
-      .dueDate(LocalDateTime.now().plusDays(1))
+      .dueDate(LocalDate.now().plusDays(1))
       .build();
     assertThat(task.isOverdue()).isFalse();
   }

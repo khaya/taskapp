@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import za.co.binarylabs.taskapp.UnitTest;
 import za.co.binarylabs.taskapp.shared.error.domain.MissingMandatoryValueException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -18,7 +18,7 @@ class TaskToCreateTest {
   void createsTaskToCreateWithValidValuesAndCreateReturnsTaskWithCorrectFields() {
     String title = "Title";
     String description = "Description";
-    LocalDateTime dueDate = LocalDateTime.now().plusDays(1);
+    LocalDate dueDate = LocalDate.now().plusDays(1);
     String priority = "HIGH";
 
     TaskToCreate toCreate = new TaskToCreate(title, description, dueDate, priority);
@@ -34,7 +34,7 @@ class TaskToCreateTest {
   @Test
   @DisplayName("Throws exception when creating TaskToCreate with null title")
   void throwsExceptionWhenCreatingTaskToCreateWithNullTitle() {
-    assertThatThrownBy(() -> new TaskToCreate(null, "desc", LocalDateTime.now(), "LOW"))
+    assertThatThrownBy(() -> new TaskToCreate(null, "desc", LocalDate.now(), "LOW"))
       .isInstanceOf(MissingMandatoryValueException.class)
       .hasMessageContaining("title");
   }
@@ -42,7 +42,7 @@ class TaskToCreateTest {
   @Test
   @DisplayName("Throws exception when creating TaskToCreate with null description")
   void throwsExceptionWhenCreatingTaskToCreateWithNullDescription() {
-    assertThatThrownBy(() -> new TaskToCreate("title", null, LocalDateTime.now(), "LOW"))
+    assertThatThrownBy(() -> new TaskToCreate("title", null, LocalDate.now(), "LOW"))
       .isInstanceOf(MissingMandatoryValueException.class)
       .hasMessageContaining("description");
   }
@@ -58,7 +58,7 @@ class TaskToCreateTest {
   @Test
   @DisplayName("Throws exception when creating TaskToCreate with null priority")
   void throwsExceptionWhenCreatingTaskToCreateWithNullPriority() {
-    assertThatThrownBy(() -> new TaskToCreate("title", "desc", LocalDateTime.now(), null))
+    assertThatThrownBy(() -> new TaskToCreate("title", "desc", LocalDate.now(), null))
       .isInstanceOf(MissingMandatoryValueException.class)
       .hasMessageContaining("priority");
   }
