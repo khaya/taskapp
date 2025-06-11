@@ -13,4 +13,10 @@ public class User {
     this.userId = userId;
     this.username = username;
   }
+  public UserId userId() {
+    return userId;
+  }
+  public String username() {
+    return username;
+  }
 }
