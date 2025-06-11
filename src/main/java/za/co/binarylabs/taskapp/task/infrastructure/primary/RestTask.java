@@ -67,7 +67,7 @@ final class RestTask {
       .build();
   }
 
-  private static final class RestTaskBuilder {
+ static final class RestTaskBuilder {
 
     private String id;
     private String title;
