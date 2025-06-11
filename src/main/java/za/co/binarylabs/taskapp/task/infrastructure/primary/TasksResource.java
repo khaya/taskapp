@@ -23,15 +23,16 @@ class TasksResource {
   }
 
   @PostMapping
-  public ResponseEntity<Task> createTask(@Validated @RequestBody TaskToCreate taskToCreate) {
+  public ResponseEntity<RestTask> createTask(@Validated @RequestBody TaskToCreate taskToCreate) {
     Task created = applicationService.createTask(taskToCreate);
-    return new ResponseEntity<>(created, HttpStatus.CREATED);
+    return new ResponseEntity<>(RestTask.from(created), HttpStatus.CREATED);
   }
 
   @GetMapping("/{taskId}")
-  public ResponseEntity<Task> findTask(@PathVariable("taskId") UUID taskId) {
+  public ResponseEntity<RestTask> findTask(@PathVariable("taskId") UUID taskId) {
     Optional<Task> task = applicationService.findTaskById(new TaskId(taskId));
-    return task.map(ResponseEntity::ok)
+    return task.map(RestTask::from)
+               .map(ResponseEntity::ok)
       .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
@@ -48,14 +49,14 @@ class TasksResource {
   }
 
   @PutMapping
-  public ResponseEntity<Task> updateTask(@Validated @RequestBody Task task) {
+  public ResponseEntity<RestTask> updateTask(@Validated @RequestBody Task task) {
     applicationService.updateTask(task);
-    return ResponseEntity.ok(task);
+    return ResponseEntity.ok(RestTask.from(task));
   }
 
   @GetMapping("/user/{userId}")
-  public ResponseEntity<Tasks> findTasksByUserId(@PathVariable("userId") UUID userId) {
+  public ResponseEntity<RestTasks> findTasksByUserId(@PathVariable("userId") UUID userId) {
     Tasks tasks = applicationService.findTasks(new UserId(userId));
-    return ResponseEntity.ok(tasks);
+    return ResponseEntity.ok(RestTasks.from(tasks));
   }
 }

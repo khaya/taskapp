@@ -5,6 +5,7 @@ import za.co.binarylabs.taskapp.shared.error.domain.Assert;
 import za.co.binarylabs.taskapp.task.domain.Task;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Schema(name="task", description = "A task")
 final class RestTask {

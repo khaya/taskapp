@@ -3,12 +3,16 @@ package za.co.binarylabs.taskapp.task.infrastructure.primary;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.co.binarylabs.taskapp.UnitTest;
 import za.co.binarylabs.taskapp.task.application.TaskApplicationService;
 import za.co.binarylabs.taskapp.task.domain.*;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,26 +31,35 @@ class TasksResourceTest {
   @DisplayName("CreateTask returns created Task with status CREATED")
   void createTaskReturnsCreatedTaskWithStatusCreated() {
     TaskToCreate toCreate = mock(TaskToCreate.class);
-    Task created = mock(Task.class);
-    when(applicationService.createTask(toCreate)).thenReturn(created);
 
-    ResponseEntity<Task> response = resource.createTask(toCreate);
+    UUID id = UUID.randomUUID();
+    TaskId taskId = new TaskId(id);
+    Task task = Task.builder().id(taskId).title(new TaskTitle("title")).description(new TaskDescription("Description")).status("OPEN").priority("HIGH").dueDate(LocalDate.now()).build();
+
+    RestTask restTask = RestTask.from(task);
+    when(applicationService.createTask(toCreate)).thenReturn(task);
+
+    ResponseEntity<RestTask> response = resource.createTask(toCreate);
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-    assertThat(response.getBody()).isEqualTo(created);
+    assertThat(response.getBody().getTitle()).isEqualTo(restTask.getTitle());
   }
 
   @Test
   @DisplayName("FindTask returns Task when found")
   void findTaskReturnsTaskWhenFound() {
     UUID id = UUID.randomUUID();
-    Task task = mock(Task.class);
-    when(applicationService.findTaskById(new TaskId(id))).thenReturn(Optional.of(task));
+    TaskId taskId = new TaskId(id);
+    Task task = Task.builder().id(taskId).title(new TaskTitle("title")).description(new TaskDescription("Description")).status("OPEN").priority("HIGH").dueDate(LocalDate.now()).build();
+    when(applicationService.findTaskById(taskId)).thenReturn(Optional.of(task));
 
-    ResponseEntity<Task> response = resource.findTask(id);
+    RestTask restTask = RestTask.from(task);
+    when(applicationService.findTaskById(taskId)).thenReturn(Optional.of(task));
+
+    ResponseEntity<RestTask> response = resource.findTask(id);
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody()).isEqualTo(task);
+    assertThat(response.getBody().getTitle()).isEqualTo(restTask.getTitle());
   }
 
   @Test
@@ -55,7 +68,7 @@ class TasksResourceTest {
     UUID id = UUID.randomUUID();
     when(applicationService.findTaskById(new TaskId(id))).thenReturn(Optional.empty());
 
-    ResponseEntity<Task> response = resource.findTask(id);
+    ResponseEntity<RestTask> response = resource.findTask(id);
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     assertThat(response.getBody()).isNull();
@@ -88,25 +101,38 @@ class TasksResourceTest {
   @Test
   @DisplayName("UpdateTask returns updated Task with status OK")
   void updateTaskReturnsUpdatedTaskWithStatusOk() {
-    Task task = mock(Task.class);
+    UUID id = UUID.randomUUID();
+    TaskId taskId = new TaskId(id);
+    Task task = Task.builder().id(taskId).title(new TaskTitle("title")).description(new TaskDescription("Description")).status("OPEN").priority("HIGH").dueDate(LocalDate.now()).build();
 
-    ResponseEntity<Task> response = resource.updateTask(task);
+    RestTask restTask = RestTask.from(task);
+
+    doNothing().when(applicationService).updateTask(task);
+
+
+    ResponseEntity<RestTask> response = resource.updateTask(task);
 
     verify(applicationService).updateTask(task);
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody()).isEqualTo(task);
+    assertThat(response.getBody().getTitle()).isEqualTo(restTask.getTitle());
   }
 
   @Test
   @DisplayName("FindTasksByUserId returns Tasks for given userId")
   void findTasksByUserIdReturnsTasksForGivenUserId() {
+    UUID id = UUID.randomUUID();
+    TaskId taskId = new TaskId(id);
+    Task task = Task.builder().id(taskId).title(new TaskTitle("title")).description(new TaskDescription("Description")).status("OPEN").priority("HIGH").dueDate(LocalDate.now()).build();
+
     UUID userId = UUID.randomUUID();
-    Tasks tasks = mock(Tasks.class);
+    Tasks tasks = new Tasks(List.of(task));
+    RestTasks restTasks = RestTasks.from(tasks);
+
     when(applicationService.findTasks(new UserId(userId))).thenReturn(tasks);
 
-    ResponseEntity<Tasks> response = resource.findTasksByUserId(userId);
+    ResponseEntity<RestTasks> response = resource.findTasksByUserId(userId);
 
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody()).isEqualTo(tasks);
+    assertThat(response.getBody().getTasks().size()).isEqualTo(restTasks.getTasks().size());
   }
 }

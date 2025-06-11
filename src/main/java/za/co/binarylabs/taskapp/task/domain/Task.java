@@ -34,6 +34,10 @@ public class Task {
     return user;
   }
 
+  public void setUser(User user) {
+    this.user = user;
+  }
+
   public boolean isOpen() {
     return this.status == Status.OPEN;
   }

@@ -21,6 +21,7 @@ public class TaskMapper {
         .user(new User(UserId.fromString(entity.getUser().getId()), entity.getUser().getUsername()))
         .title(new TaskTitle(entity.getTitle()))
         .description(new TaskDescription(entity.getDescription()))
+        .dueDate(entity.getDueDate())
         .priority(entity.getPriority())
         .status(entity.getStatus())
         .build();
@@ -35,6 +36,7 @@ public class TaskMapper {
     entity.setTitle(task.title().get());
     entity.setDescription(task.description().get());
     entity.setPriority(task.priority().name());
+    entity.setDueDate(task.dueDate());
     entity.setStatus(task.status().name());
     return entity;
   }
