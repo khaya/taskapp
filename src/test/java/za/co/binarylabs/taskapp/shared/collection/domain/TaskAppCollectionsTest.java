@@ -15,16 +15,16 @@ import org.junit.jupiter.api.Test;
 import za.co.binarylabs.taskapp.UnitTest;
 
 @UnitTest
-class TodoCollectionsTest {
+class TaskAppCollectionsTest {
 
   @Nested
   @DisplayName("Collections")
-  class TodoCollectionsCollectionsTest {
+  class TaskAppCollectionsCollectionsTest {
 
     @Test
     void shouldGetEmptyImmutableCollectionFromNullCollection() {
       Collection<Object> input = null;
-      Collection<Object> collection = TodoCollections.immutable(input);
+      Collection<Object> collection = TaskAppCollections.immutable(input);
 
       assertThat(collection).isEmpty();
       assertThatThrownBy(collection::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -34,7 +34,7 @@ class TodoCollectionsTest {
     void shouldGetImmutableCollectionFromMutableCollection() {
       Collection<String> input = new ArrayList<>();
       input.add("value");
-      Collection<String> collection = TodoCollections.immutable(input);
+      Collection<String> collection = TaskAppCollections.immutable(input);
 
       assertThat(collection).containsExactly("value");
       assertThatThrownBy(collection::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -43,12 +43,12 @@ class TodoCollectionsTest {
 
   @Nested
   @DisplayName("Set")
-  class TodoCollectionsSetTest {
+  class TaskAppCollectionsSetTest {
 
     @Test
     void shouldGetEmptyImmutableCollectionFromNullCollection() {
       Set<Object> input = null;
-      Set<Object> set = TodoCollections.immutable(input);
+      Set<Object> set = TaskAppCollections.immutable(input);
 
       assertThat(set).isEmpty();
       assertThatThrownBy(set::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -58,7 +58,7 @@ class TodoCollectionsTest {
     void shouldGetImmutableCollectionFromMutableCollection() {
       Set<String> input = new HashSet<>();
       input.add("value");
-      Set<String> set = TodoCollections.immutable(input);
+      Set<String> set = TaskAppCollections.immutable(input);
 
       assertThat(set).containsExactly("value");
       assertThatThrownBy(set::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -67,12 +67,12 @@ class TodoCollectionsTest {
 
   @Nested
   @DisplayName("List")
-  class TodoCollectionsListTest {
+  class TaskAppCollectionsListTest {
 
     @Test
     void shouldGetEmptyImmutableCollectionFromNullCollection() {
       List<Object> input = null;
-      List<Object> list = TodoCollections.immutable(input);
+      List<Object> list = TaskAppCollections.immutable(input);
 
       assertThat(list).isEmpty();
       assertThatThrownBy(list::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -82,7 +82,7 @@ class TodoCollectionsTest {
     void shouldGetImmutableCollectionFromMutableCollection() {
       List<String> input = new ArrayList<>();
       input.add("value");
-      List<String> list = TodoCollections.immutable(input);
+      List<String> list = TaskAppCollections.immutable(input);
 
       assertThat(list).containsExactly("value");
       assertThatThrownBy(list::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -91,12 +91,12 @@ class TodoCollectionsTest {
 
   @Nested
   @DisplayName("Map")
-  class TodoMapTest {
+  class TaskAppMapTest {
 
     @Test
     void shouldGetEmptyImmutableMapFromNullMap() {
       Map<Object, Object> input = null;
-      Map<Object, Object> map = TodoCollections.immutable(input);
+      Map<Object, Object> map = TaskAppCollections.immutable(input);
 
       assertThat(map).isEmpty();
       assertThatThrownBy(map::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
@@ -106,7 +106,7 @@ class TodoCollectionsTest {
     void shouldGetImmutableMapFromMutableMap() {
       Map<String, String> input = new HashMap<>();
       input.put("key", "value");
-      Map<String, String> map = TodoCollections.immutable(input);
+      Map<String, String> map = TaskAppCollections.immutable(input);
 
       assertThat(map).containsExactly(Map.entry("key", "value"));
       assertThatThrownBy(map::clear).isExactlyInstanceOf(UnsupportedOperationException.class);

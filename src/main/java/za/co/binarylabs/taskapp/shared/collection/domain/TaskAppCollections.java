@@ -9,9 +9,9 @@ import java.util.Set;
 /**
  * Null safe utility class to manage collections
  */
-public final class TodoCollections {
+public final class TaskAppCollections {
 
-  private TodoCollections() {}
+  private TaskAppCollections() {}
 
   /**
    * Get an immutable collection from the given collection
