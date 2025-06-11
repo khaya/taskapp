@@ -25,9 +25,20 @@ spring:
     jpa:
       repositories:
         bootstrap-mode: deferred
+  sql:
+    init:
+      mode: always
+      enabled: true
+      platform: postgresql
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
+      properties:
+        hibernate:
+          show_sql: true
+          hbm2ddl:
+            auto: create-drop
+            import_files: import.sql
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
