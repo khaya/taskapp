@@ -7,5 +7,4 @@ public interface TaskRepository {
     void save(Task task);
     void delete(TaskId taskId);
     Tasks findAllByUserId(UserId userId);
-
 }
