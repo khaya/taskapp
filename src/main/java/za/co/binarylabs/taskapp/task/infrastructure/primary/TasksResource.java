@@ -1,62 +1,61 @@
 package za.co.binarylabs.taskapp.task.infrastructure.primary;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import za.co.binarylabs.taskapp.task.application.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import za.co.binarylabs.taskapp.task.application.TaskApplicationService;
+import za.co.binarylabs.taskapp.task.domain.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import za.co.binarylabs.taskapp.task.domain.TaskRepository;
+import java.util.Optional;
+import java.util.UUID;
 
-
-//@RestController
+@RestController
 @Tag(name = "Tasks")
 @RequestMapping("/api/tasks")
 class TasksResource {
 
   private final TaskApplicationService applicationService;
-  private final TaskRepository taskRepository;
 
   public TasksResource(TaskApplicationService applicationService, TaskRepository taskRepository) {
     this.applicationService = applicationService;
-    this.taskRepository = taskRepository;
   }
 
-/*
   @PostMapping
-  @Operation(summary = "Add a Task to the catalog")
-  @ApiResponse(description = "Task added to the catalog", responseCode = "201")
-  ResponseEntity<RestTask> addTask(@Validated @RequestBody RestTaskToCreate taskToCreate) {
-    Task createdTask = createTaskUseCase.execute(taskToCreate.toDomain());
-    return new ResponseEntity<>(RestTask.from(createdTask), HttpStatus.CREATED);
+  public ResponseEntity<Task> createTask(@Validated @RequestBody TaskToCreate taskToCreate) {
+    Task created = applicationService.createTask(taskToCreate);
+    return new ResponseEntity<>(created, HttpStatus.CREATED);
   }
 
-  @PostMapping("/{task-id}/complete")
-  @Operation(summary = "Mark Task as completed")
-  @ApiResponse(description = "Task marked as completed", responseCode = "200")
-  public ResponseEntity<Void> completeTask(@PathVariable("task-id") UUID id) {
-    completeTaskUseCase.execute(new TaskId(id));
+  @GetMapping("/{taskId}")
+  public ResponseEntity<Task> findTask(@PathVariable("taskId") UUID taskId) {
+    Optional<Task> task = applicationService.findTaskById(new TaskId(taskId));
+    return task.map(ResponseEntity::ok)
+      .orElseGet(() -> ResponseEntity.notFound().build());
+  }
+
+  @PostMapping("/{taskId}/complete")
+  public ResponseEntity<Void> completeTask(@PathVariable("taskId") UUID taskId) {
+    applicationService.completeTask(new TaskId(taskId));
     return ResponseEntity.ok().build();
   }
 
-  @GetMapping("/{task-id}")
-  @Operation(summary = "Get Task by ID")
-  @ApiResponse(description = "Task found", responseCode = "200")
-  public ResponseEntity<RestTask> findTaskById(@PathVariable("task-id") UUID id) {
-    Task task = findTaskUseCase.execute(new TaskId(id));
-    return ResponseEntity.ok(RestTask.from(task));
+  @DeleteMapping("/{taskId}")
+  public ResponseEntity<Void> deleteTask(@PathVariable("taskId") UUID taskId) {
+    applicationService.deleteTask(new TaskId(taskId));
+    return ResponseEntity.ok().build();
   }
 
-  @GetMapping("/user/{user-id}")
-  @Operation(summary = "Get Tasks by User ID")
-  @ApiResponse(description = "List of tasks for the user", responseCode = "200")
-  public ResponseEntity<RestTasks> getTasksByUserId(@PathVariable("user-id") UUID id) {
-    Tasks tasks = findTasksUseCase.execute(new UserId(id));
-    return ResponseEntity.ok(RestTasks.from(tasks));
+  @PutMapping
+  public ResponseEntity<Task> updateTask(@Validated @RequestBody Task task) {
+    applicationService.updateTask(task);
+    return ResponseEntity.ok(task);
   }
 
-  @DeleteMapping("/{task-id}")
-  @Operation(summary = "Remove Task from catalog")
-  @ApiResponse(description = "Task removed from the catalog", responseCode = "200")
-  void removeTask(@PathVariable("task-id") UUID id) {
-    deleteTaskUseCase.execute(new TaskId(id));
-  }*/
+  @GetMapping("/user/{userId}")
+  public ResponseEntity<Tasks> findTasksByUserId(@PathVariable("userId") UUID userId) {
+    Tasks tasks = applicationService.findTasks(new UserId(userId));
+    return ResponseEntity.ok(tasks);
+  }
 }
