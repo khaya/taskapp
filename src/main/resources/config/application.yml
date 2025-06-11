@@ -12,7 +12,7 @@ spring:
     hikari:
       auto-commit: false
       poolName: Hikari
-    password: ''
+    password: taskapp
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/taskapp
     username: taskapp
