@@ -3,6 +3,7 @@ package za.co.binarylabs.taskapp.task.infrastructure.secondary;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 public class JpaTask {
 
+  @Id
   @Column(name="id", nullable = false, unique = true)
   private String id;
   @Column(name = "user_id", nullable = false)
@@ -80,4 +82,7 @@ public class JpaTask {
   public void setStatus(String status) {
     this.status = status;
   }
+
+
+
 }
